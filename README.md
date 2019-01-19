@@ -5,6 +5,7 @@
 - <a href="https://www.mathworks.com/matlabcentral/fileexchange/23576-min-max-selection" target="_blank">Min/Max selection</a> 
 
 ## Usage
+Add the included folders to path and run
 ```matlab
 test_FastHNBF
 ```
