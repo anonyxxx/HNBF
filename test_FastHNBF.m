@@ -121,7 +121,9 @@ for kk = 1:length(Ks)
     
     itr = 0;
     IsConverge = false;
+    total_time = 0
     while IsConverge == false
+        t = cputime;
         itr = itr + 1;
         lr = 1.0;
 
@@ -137,6 +139,7 @@ for kk = 1:length(Ks)
         % Train generator G given samples and their scores evluated by D
         Learn_FastHNBF(lr);
         
+        total_time = total_time + (cputime - t);
         
         %% Calculate precision, recall, MRR, and nDCG
         %
@@ -187,6 +190,7 @@ for kk = 1:length(Ks)
     fprintf('testing recall@5    : %f\n', total_test_recall(1,1));
     fprintf('testing recall@10   : %f\n', total_test_recall(1,2));
     fprintf('testing MRR         : %f\n', total_test_MRR(1,1));
+    fprintf('Computing time per epoch : %f sec\n', total_time / MaxItr);
 end
 
 
