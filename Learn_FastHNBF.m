@@ -108,11 +108,11 @@ function [] = Learn_FastHNBF(lr)
     
     %% Update G_vecGamma & G_vecDelta
     G_matEpsilon_Shp = (1-lr) * G_matEpsilon_Shp + lr * (b + K * a);
-    G_matEpsilon_Rte = (1-lr) * G_matEpsilon_Rte + lr * (c + sum(G_matTheta, 2));
+    G_matEpsilon_Rte = (1-lr) * G_matEpsilon_Rte + lr * (b/c + sum(G_matTheta, 2));
     G_matEpsilon = G_matEpsilon_Shp ./ G_matEpsilon_Rte;
 
     G_matEta_Shp = (1-lr) * G_matEta_Shp + lr * (e + K * d);
-    G_matEta_Rte = (1-lr) * G_matEta_Rte + lr * (f + sum(G_matBeta, 2));
+    G_matEta_Rte = (1-lr) * G_matEta_Rte + lr * (e/f + sum(G_matBeta, 2));
     G_matEta = G_matEta_Shp ./ G_matEta_Rte;
     
     

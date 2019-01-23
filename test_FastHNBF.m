@@ -72,7 +72,7 @@ topK = [5, 10, 15, 20];
 MaxItr = 400;
 G_prior = [3, 1, 0.1, ...
            3, 1, 0.1, ...
-           1e2, 1e8, 1e2, 1e8, ...
+           1e3, 1e8, 1e3, 1e8, ...
            200, 1e4];
     
 matPrecNRecall = zeros(NUM_RUNS*length(Ks), length(topK)*6);
@@ -113,8 +113,8 @@ for kk = 1:length(Ks)
     
     %% Model initialization
     %
-    G_prior(1:6) = [30, 1*K, 0.1*sqrt(K), ...
-                    30, 1*K, 0.1*sqrt(K)];
+    G_prior(1:6) = [30, 1*K, 10/sqrt(K), ...
+                    30, 1*K, 10/sqrt(K)];
     newFastHNBF(ini_scale, usr_zeros, itm_zeros);
     
     [is_X_train, js_X_train, vs_X_train] = find(matX_train);
