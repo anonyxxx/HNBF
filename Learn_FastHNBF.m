@@ -122,15 +122,15 @@ function [] = Learn_FastHNBF(lr)
     G_matGamma_Rte = (1-lr) * G_matGamma_Rte + lr * bsxfun(@plus, 1/K * (G_matTheta * (G_matBeta' * G_matDelta) - tmpD * G_matDelta), G_vecMu);
     G_matGamma = G_matGamma_Shp ./ G_matGamma_Rte;
     
-    G_vecMu_Shp = (1-lr) * G_vecMu_Shp + lr * (K*g_mu + K * G_vecMu .* (log(G_vecMu) - psi(G_vecMu)));
-    G_vecMu_Rte = (1-lr) * G_vecMu_Rte + lr * (K*g_mu ./ h_mu + sum(G_matGamma - log(G_matGamma), 2) - K);
+    G_vecMu_Shp = (1-lr) * G_vecMu_Shp + lr * (g_mu + K * G_vecMu .* (log(G_vecMu) - psi(G_vecMu)));
+    G_vecMu_Rte = (1-lr) * G_vecMu_Rte + lr * (g_mu ./ h_mu + sum(G_matGamma - log(G_matGamma), 2) - K);
     G_vecMu = G_vecMu_Shp ./ G_vecMu_Rte;
     
     G_matDelta_Rte = (1-lr) * G_matDelta_Rte + lr * bsxfun(@plus, 1/K * (G_matBeta * (G_matTheta' * G_matGamma) - tmpD' * G_matGamma), G_vecPi);
     G_matDelta = G_matDelta_Shp ./ G_matDelta_Rte;
     
-    G_vecPi_Shp = (1-lr) * G_vecPi_Shp + lr * (K*g_pi + K * G_vecPi .* (log(G_vecPi) - psi(G_vecPi)));
-    G_vecPi_Rte = (1-lr) * G_vecPi_Rte + lr * (K*g_pi ./ h_pi + sum(G_matDelta - log(G_matDelta), 2) - K);
+    G_vecPi_Shp = (1-lr) * G_vecPi_Shp + lr * (g_pi + K * G_vecPi .* (log(G_vecPi) - psi(G_vecPi)));
+    G_vecPi_Rte = (1-lr) * G_vecPi_Rte + lr * (g_pi ./ h_pi + sum(G_matDelta - log(G_matDelta), 2) - K);
     G_vecPi = G_vecPi_Shp ./ G_vecPi_Rte;
      
 end
